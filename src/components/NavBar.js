@@ -2,7 +2,7 @@ import React from 'react'
 import { Navbar, Nav, Button } from 'react-bootstrap'
 
 function NavBar() {
-    const isAuth = false //UserStore - Redux или Mobx 
+    const isAuth = true //UserStore - Redux или Mobx 
     const login = 'Login'//UserStore
     return (
         <Navbar bg="dark" variant="dark" fixed="top">

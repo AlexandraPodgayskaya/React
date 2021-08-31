@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, Table, Button, ButtonGroup } from 'react-bootstrap'
+import CreateCertificate from '../modals/CreateCertificate'
 
 function Admin() {
     const giftCertificates = [{ id: 1, name: "Massage", description: "Body massage with aromatic oils in a relaxing envoironment", "price": "1500", "createDate": " 10.01.2015", "lastUpdateDate": " 10.01.2015", "tags": [{ "name": "gift" }, { "name": "massage" }] },
@@ -9,6 +10,7 @@ function Admin() {
     { id: 5, name: "Massage5", description: "Body massage with aromatic oils in a relaxing envoironment", "price": "1500", "createDate": " 10.01.2015", "lastUpdateDate": " 10.01.2015", "tags": [{ "name": "gift" }, { "name": "massage" }] },]
 
     const isAdmin = true
+    const [editVisable, setEditVisable] = useState(false)
     return (
         <Container
             className="d-flex justify-content-center align-items-center"
@@ -37,7 +39,13 @@ function Admin() {
                                 <td>
                                     <ButtonGroup aria-label="Basic example">
                                         <Button style={{ background: "blue" }} variant="secondary">View</Button>
-                                        <Button style={{ background: "orange" }} variant="secondary">Edit</Button>
+                                        <Button
+                                            style={{ background: "orange" }}
+                                            variant="secondary"
+                                            onClick={() => setEditVisable(true)}
+                                        >
+                                            Edit
+                                        </Button>
                                         <Button style={{ background: "red" }} variant="secondary">Delete</Button>
                                     </ButtonGroup>
                                 </td>}
@@ -45,6 +53,7 @@ function Admin() {
                     )}
                 </tbody>
             </Table>
+            <CreateCertificate show={editVisable} onHide={() => setEditVisable(false)} />
         </Container>
     )
 }

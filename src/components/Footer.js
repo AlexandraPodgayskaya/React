@@ -4,7 +4,7 @@ import { Navbar } from 'react-bootstrap'
 function Footer() {
     return (
         <Navbar bg="dark" variant="dark" fixed="bottom">
-            <Navbar.Brand className="m-auto" style={{ color: "grey" }}>2018, EXPEDIA Student</Navbar.Brand>
+            <Navbar.Brand className="m-auto" style={{ color: "grey",  fontWeight: 700 }}>2018, EXPEDIA Student</Navbar.Brand>
         </Navbar>
     )
 }

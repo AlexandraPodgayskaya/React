@@ -4,7 +4,7 @@ import { authRoutes, publicRoutes } from '../routes'
 import { SHOP_ROUTE } from '../utils/consts'
 
 function AppRouter() {
-    const isAuth = false //UserStore - Redux или Mobx
+    const isAuth = true //UserStore - Redux или Mobx
     return (
         <Switch>
             {isAuth && authRoutes.map(({ path, Component }) =>

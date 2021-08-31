@@ -1,7 +1,10 @@
 import React from 'react'
 import { Container, Card, Form, Button } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
+import { ADMIN_ROUTE } from '../utils/consts'
 
 function Auth() {
+    const history = useHistory()
     return (
         <Container
             className="d-flex justify-content-center align-items-center"
@@ -20,7 +23,7 @@ function Auth() {
                             placeholder="Password"
                         />
                     </Form>
-                    <Button className="mt-3" variant="primary">Login</Button>
+                    <Button className="mt-3" variant="primary" onClick={() => history.push(ADMIN_ROUTE)}>Login</Button>
                 </Card.Body>
             </Card>
         </Container>

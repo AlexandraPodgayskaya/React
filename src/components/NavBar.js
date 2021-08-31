@@ -2,12 +2,13 @@ import React from 'react'
 import { Navbar, Nav, Button } from 'react-bootstrap'
 
 function NavBar() {
-    const isAuth = false //UserStore - Redux или Mobx 
+    const isAuth = true //UserStore - Redux или Mobx 
     const login = 'E-mail'//UserStore
     return (
         <Navbar bg="dark" variant="dark" fixed="top">
-            <Navbar.Brand style={{ color: "grey" }}>Admin UI</Navbar.Brand>
-            {isAuth &&
+            <Navbar.Brand style={{ color: "grey", fontWeight: 700 }}>Admin UI</Navbar.Brand>
+            {
+                isAuth &&
                 <>
                     <Nav className="me-auto">
                         <Button>Add new</Button>
@@ -18,7 +19,7 @@ function NavBar() {
                     </Nav>
                 </>
             }
-        </Navbar>
+        </Navbar >
     )
 }
 

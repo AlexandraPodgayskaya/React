@@ -1,16 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Table, Button, ButtonGroup } from 'react-bootstrap'
 import CreateCertificate from '../modals/CreateCertificate'
+import { fetchCertificates } from '../http/certificatesAPI'
 
 function Admin() {
-    const giftCertificates = [{ id: 1, name: "Massage", description: "Body massage with aromatic oils in a relaxing envoironment", "price": "1500", "createDate": " 10.01.2015", "lastUpdateDate": " 10.01.2015", "tags": [{ "name": "gift" }, { "name": "massage" }] },
-    { id: 2, name: "Massage2", description: "Body2 massage with aromatic oils in a relaxing envoironment", "price": "500", "createDate": " 10.01.2015", "lastUpdateDate": " 10.01.2015", "tags": [{ "name": "massage" }] },
-    { id: 3, name: "Massage3", description: "Body massage with aromatic oils in a relaxing envoironment", "price": "1500", "createDate": " 10.01.2015", "lastUpdateDate": " 10.01.2015", "tags": [{ "name": "gift" }, { "name": "massage" }] },
-    { id: 4, name: "Massage4", description: "Body2 massage with aromatic oils in a relaxing envoironment", "price": "500", "createDate": " 10.01.2015", "lastUpdateDate": " 10.01.2015", "tags": [{ "name": "massage" }] },
-    { id: 5, name: "Massage5", description: "Body massage with aromatic oils in a relaxing envoironment", "price": "1500", "createDate": " 10.01.2015", "lastUpdateDate": " 10.01.2015", "tags": [{ "name": "gift" }, { "name": "massage" }] },]
-
+   
     const isAdmin = true
     const [editVisable, setEditVisable] = useState(false)
+    const [certificates, setCertificates] = useState([])
+    useEffect(() => {
+        fetchCertificates().then(data => setCertificates(data.pagePositions))
+    }, [])
+    console.log(certificates)
     return (
         <Container
             className="d-flex justify-content-center align-items-center"
@@ -28,13 +29,13 @@ function Admin() {
                     </tr>
                 </thead>
                 <tbody>
-                    {giftCertificates.map((giftCertificate, index) =>
+                    {certificates.map((certificate, index) =>
                         <tr key={index} style={{ background: index % 2 === 0 ? "var(--bs-gray-200)" : "lightgray" }}>
-                            <td>{giftCertificate.createDate}</td>
-                            <td>{giftCertificate.name}</td>
-                            <td>{giftCertificate.tags.map(tag => tag.name + " ")}</td>
-                            <td>{giftCertificate.description}</td>
-                            <td>{giftCertificate.price}</td>
+                            <td>{certificate.createDate}</td>
+                            <td>{certificate.name}</td>
+                            <td>{certificate.tags.map(tag => tag.name + " ")}</td>
+                            <td>{certificate.description}</td>
+                            <td>{certificate.price}</td>
                             {isAdmin &&
                                 <td>
                                     <ButtonGroup aria-label="Basic example">

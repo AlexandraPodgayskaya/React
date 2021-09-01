@@ -29,7 +29,7 @@ function Admin() {
                 </thead>
                 <tbody>
                     {giftCertificates.map((giftCertificate, index) =>
-                        <tr style={{ background: index % 2 === 0 ? "var(--bs-gray-200)" : "lightgray" }}>
+                        <tr key={index} style={{ background: index % 2 === 0 ? "var(--bs-gray-200)" : "lightgray" }}>
                             <td>{giftCertificate.createDate}</td>
                             <td>{giftCertificate.name}</td>
                             <td>{giftCertificate.tags.map(tag => tag.name + " ")}</td>

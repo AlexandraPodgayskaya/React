@@ -5,7 +5,7 @@ import { LOGIN_ROUTE } from '../utils/consts'
 
 function NavBar() {
     const isAuth = true //UserStore - Redux или Mobx 
-    const login = 'E-mail'//UserStore
+    const login = localStorage.getItem('email')
     const history = useHistory()
     return (
         <Navbar bg="dark" variant="dark" fixed="top">

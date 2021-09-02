@@ -10,7 +10,10 @@ function Auth() {
     const history = useHistory()
     const signIn = async () => {
         try {
-            const data = await login(email, password)
+            login(email, password).then(data => {
+                localStorage.setItem('email', data.email)
+                console.log(data.email)
+            })
             history.push(ADMIN_ROUTE)
         } catch (e) {
             alert(e.response.data.errorMessage)

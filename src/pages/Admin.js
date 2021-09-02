@@ -2,14 +2,19 @@ import React, { useState, useEffect } from 'react'
 import { Container, Table, Button, ButtonGroup } from 'react-bootstrap'
 import CreateCertificate from '../components/modals/CreateCertificate'
 import { fetchCertificates } from '../http/certificatesAPI'
+import Pages from '../components/Pages'
 
 function Admin() {
-   
+
     const isAdmin = true
     const [editVisable, setEditVisable] = useState(false)
     const [certificates, setCertificates] = useState([])
+    const [count, setCount] = useState()
     useEffect(() => {
-        fetchCertificates().then(data => setCertificates(data.pagePositions))
+        fetchCertificates().then(data => {
+            setCertificates(data.pagePositions)
+            setCount(data.totalNumberPositions)
+        })
     }, [])
     console.log(certificates)
     console.log(localStorage.getItem('token'))

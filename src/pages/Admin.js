@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Container, Table, Button, ButtonGroup } from 'react-bootstrap'
-import CreateCertificate from '../modals/CreateCertificate'
+import CreateCertificate from '../components/modals/CreateCertificate'
 import { fetchCertificates } from '../http/certificatesAPI'
 
 function Admin() {
@@ -12,6 +12,7 @@ function Admin() {
         fetchCertificates().then(data => setCertificates(data.pagePositions))
     }, [])
     console.log(certificates)
+    console.log(localStorage.getItem('token'))
     return (
         <Container
             className="d-flex justify-content-center align-items-center"

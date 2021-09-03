@@ -8,12 +8,13 @@ import { AuthContext } from '../context';
 function Auth() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const { setIsAuth } = useContext(AuthContext)
+    const { setIsAuth, setIsAdmin } = useContext(AuthContext)
     const history = useHistory()
     const signIn = async () => {
         login(email, password).then(data => {
             localStorage.setItem('email', data.email)
             setIsAuth(true)
+            setIsAdmin(data.admin)
             history.push(SHOP_ROUTE)
         }).catch(e => { alert(e.response.data.errorMessage) })
 

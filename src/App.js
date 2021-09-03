@@ -7,10 +7,13 @@ import Footer from "./components/Footer";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false)
   return (
     <AuthContext.Provider value={{
       isAuth,
-      setIsAuth
+      isAdmin,
+      setIsAuth,
+      setIsAdmin
     }}>
       <BrowserRouter>
         <NavBar />

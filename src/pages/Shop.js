@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Container, Table, Button, ButtonGroup } from 'react-bootstrap'
 import CreateCertificate from '../components/modals/CreateCertificate'
 import { fetchCertificates } from '../http/certificatesAPI'
+import { AuthContext } from '../context'
 import Pages from '../components/Pages'
 
 function Admin() {
 
-    const isAdmin = true
+    const {isAdmin} = useContext(AuthContext)
     const [editVisable, setEditVisable] = useState(false)
     const [certificates, setCertificates] = useState([])
     const [count, setCount] = useState()

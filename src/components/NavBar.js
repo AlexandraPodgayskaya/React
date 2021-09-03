@@ -5,14 +5,14 @@ import { LOGIN_ROUTE, SHOP_ROUTE } from '../utils/consts'
 import { AuthContext } from '../context';
 
 function NavBar() {
-    const { isAuth, setIsAuth } = useContext(AuthContext)
+    const { isAuth, isAdmin, setIsAuth, setIsAdmin } = useContext(AuthContext)
     const login = localStorage.getItem('email')
     const history = useHistory()
-    const isAdmin = true
     const location = useLocation()
     const isShop = location.pathname === SHOP_ROUTE
     const logout = () => {
         setIsAuth(false)
+        setIsAdmin(false)
         localStorage.removeItem('email')
         localStorage.removeItem('token')
         history.push(LOGIN_ROUTE)

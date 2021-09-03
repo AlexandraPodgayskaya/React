@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { Container, Card, Form, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import { login } from '../http/userAPI'
-import { ADMIN_ROUTE } from '../utils/consts'
+import { SHOP_ROUTE } from '../utils/consts'
 import { AuthContext } from '../context';
 
 function Auth() {
@@ -14,7 +14,7 @@ function Auth() {
         login(email, password).then(data => {
             localStorage.setItem('email', data.email)
             setIsAuth(true)
-            history.push(ADMIN_ROUTE)
+            history.push(SHOP_ROUTE)
         }).catch(e => { alert(e.response.data.errorMessage) })
 
 

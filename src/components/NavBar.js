@@ -1,13 +1,16 @@
 import React, { useContext } from 'react'
 import { Navbar, Nav, Button } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
-import { LOGIN_ROUTE } from '../utils/consts'
+import { useHistory, useLocation } from 'react-router-dom'
+import { LOGIN_ROUTE, SHOP_ROUTE } from '../utils/consts'
 import { AuthContext } from '../context';
 
 function NavBar() {
     const { isAuth, setIsAuth } = useContext(AuthContext)
     const login = localStorage.getItem('email')
     const history = useHistory()
+    const isAdmin = true
+    const location = useLocation()
+    const isShop = location.pathname === SHOP_ROUTE
     const logout = () => {
         setIsAuth(false)
         localStorage.removeItem('email')
@@ -16,19 +19,14 @@ function NavBar() {
     }
     return (
         <Navbar bg="dark" variant="dark" fixed="top">
-            <Navbar.Brand style={{ color: "grey", fontWeight: 700 }}>Admin UI</Navbar.Brand>
-            {
-                isAuth &&
-                <>
-                    <Nav className="me-auto">
-                        <Button>Add new</Button>
-                    </Nav>
-                    <Nav className="ml-auto">
-                        <Nav.Link style={{ color: "white" }}>{login}</Nav.Link>
-                        <Nav.Link onClick={logout} style={{ color: "white" }}>Logout</Nav.Link>
-                    </Nav>
-                </>
-            }
+            <Navbar.Brand style={{ color: "grey", fontWeight: 700 }}>{isAdmin ? 'Admin UI' : 'UI'}</Navbar.Brand>
+            <Nav className="me-auto">
+                {isAdmin && <Button>Add new</Button>}
+            </Nav>
+            <Nav className="ml-auto">
+                <Nav.Link style={{ color: "white" }}>{login}</Nav.Link>
+                {isShop && <Nav.Link onClick={logout} style={{ color: "white" }}>{isAuth ? 'Logout' : 'Login'}</Nav.Link>}
+            </Nav>
         </Navbar >
     )
 }

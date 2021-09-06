@@ -19,15 +19,21 @@ function DeleteCertificate({ show, onHide, certificateId }) {
             backdrop="static"
             keyboard={false}
         >
-            <Modal.Header closeButton>
-                <Modal.Title>Delete confirmation</Modal.Title>
+            <Modal.Header style={{
+                background: "#d3d3d340",
+                height: "50px",
+                color: "var(--bs-gray-500)"
+            }}>
+                <Modal.Title style={{ fontSize: "18px" }}>Delete confirmation</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 Do you really want to delete certificate with id = {certificateId}?
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={deleteItem}>Yes</Button>
-                <Button variant="primary" onClick={onHide}>Cancel</Button>
+                <div className="d-block mx-auto">
+                    <Button style={{ width: "80px", marginRight: "3px" }} variant="danger" onClick={deleteItem}>Yes</Button>
+                    <Button style={{ width: "80px" }} variant="secondary" onClick={onHide}>Cancel</Button>
+                </div>
             </Modal.Footer>
         </Modal>
     )

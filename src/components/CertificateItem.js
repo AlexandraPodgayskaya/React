@@ -1,11 +1,9 @@
-import React, { useContext, useState } from 'react'
-import { Button, ButtonGroup } from 'react-bootstrap'
+import React, { useContext } from 'react'
 import { AuthContext } from '../context'
-import CreateCertificate from '../components/modals/CreateCertificate'
+import AdminButtonGroup from '../components/AdminButtonGroup'
 
 function CertificateItem({ certificate, index }) {
     const { isAdmin } = useContext(AuthContext)
-    const [editVisable, setEditVisable] = useState(false)
     return (
         <tr key={certificate.id} style={{ background: index % 2 === 0 ? "var(--bs-gray-200)" : "lightgray" }}>
             <td>{certificate.createDate}</td>
@@ -15,19 +13,8 @@ function CertificateItem({ certificate, index }) {
             <td>{certificate.price}</td>
             {isAdmin &&
                 <td>
-                    <ButtonGroup aria-label="Basic example">
-                        <Button style={{ background: "blue" }} variant="secondary">View</Button>
-                        <Button
-                            style={{ background: "orange" }}
-                            variant="secondary"
-                            onClick={() => setEditVisable(true)}
-                        >
-                            Edit
-                        </Button>
-                        <Button style={{ background: "red" }} variant="secondary">Delete</Button>
-                    </ButtonGroup>
+                    <AdminButtonGroup />
                 </td>}
-            <CreateCertificate show={editVisable} onHide={() => setEditVisable(false)} />
         </tr>
     )
 }

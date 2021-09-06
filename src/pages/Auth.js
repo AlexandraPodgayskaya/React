@@ -15,7 +15,7 @@ function Auth() {
             localStorage.setItem('email', data.email)
             localStorage.setItem('isAuth', true)
             localStorage.setItem('isAdmin', data.admin)
-            setIsAdmin('true')
+            setIsAdmin(JSON.stringify(data.admin))
             setIsAuth(true)
             history.push(SHOP_ROUTE)
         }).catch(e => { alert(e.response.data.errorMessage) })

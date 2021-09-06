@@ -21,7 +21,7 @@ function NavBar() {
     }
     return (
         <Navbar bg="dark" variant="dark" fixed="top">
-            <Navbar.Brand style={{ color: "grey", fontWeight: 700 }}>{isAdmin ? 'Admin UI' : 'UI'}</Navbar.Brand>
+            <Navbar.Brand style={{ color: "grey", fontWeight: 700 }}>{isAdmin === 'true' ? 'Admin UI' : 'UI'}</Navbar.Brand>
             <Nav className="me-auto">
                 {isAdmin === 'true' && <Button>Add new</Button>}
             </Nav>

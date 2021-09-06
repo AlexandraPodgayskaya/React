@@ -13,8 +13,10 @@ function Auth() {
     const signIn = async () => {
         login(email, password).then(data => {
             localStorage.setItem('email', data.email)
+            localStorage.setItem('isAuth', true)
+            localStorage.setItem('isAdmin', data.admin)
+            setIsAdmin('true')
             setIsAuth(true)
-            setIsAdmin(data.admin)
             history.push(SHOP_ROUTE)
         }).catch(e => { alert(e.response.data.errorMessage) })
 

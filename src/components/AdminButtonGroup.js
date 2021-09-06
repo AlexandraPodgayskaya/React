@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { Button, ButtonGroup } from 'react-bootstrap'
 import CreateCertificate from '../components/modals/CreateCertificate'
+import DeleteCertificate from '../components/modals/DeleteCertificate'
 
-function AdminButtonGroup() {
+function AdminButtonGroup({ certificate }) {
     const [editVisable, setEditVisable] = useState(false)
+    const [deleteVisable, setDeleteVisable] = useState(false)
     return (
         <ButtonGroup aria-label="Basic example">
             <Button style={{ background: "blue" }} variant="secondary">View</Button>
@@ -14,8 +16,15 @@ function AdminButtonGroup() {
             >
                 Edit
             </Button>
-            <Button style={{ background: "red" }} variant="secondary">Delete</Button>
+            <Button
+                style={{ background: "red" }}
+                variant="secondary"
+                onClick={() => setDeleteVisable(true)}
+            >
+                Delete
+            </Button>
             <CreateCertificate show={editVisable} onHide={() => setEditVisable(false)} />
+            <DeleteCertificate show={deleteVisable} onHide={() => setDeleteVisable(false)} certificateId={certificate.id} />
         </ButtonGroup>
     )
 }

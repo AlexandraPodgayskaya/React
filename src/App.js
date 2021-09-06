@@ -6,8 +6,8 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 
 function App() {
-  const [isAuth, setIsAuth] = useState(false)
-  const [isAdmin, setIsAdmin] = useState(false)
+  const [isAuth, setIsAuth] = useState(localStorage.getItem('isAuth'))
+  const [isAdmin, setIsAdmin] = useState(localStorage.getItem('isAdmin'))
   return (
     <AuthContext.Provider value={{
       isAuth,

@@ -20,7 +20,7 @@ function CertificateList() {
                         <th>Tags</th>
                         <th>Description</th>
                         <th>Price</th>
-                        {isAdmin && <th>Actions</th>}
+                        {isAdmin === 'true' && <th>Actions</th>}
                     </tr>
                 </thead>
                 <tbody>

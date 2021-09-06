@@ -18,3 +18,8 @@ export const fetchCertificates = async (number, size) => {
     })
     return data
 }
+
+export const deleteCertificate = async (id) => {
+    const { data } = await $authHost.delete('gift-certificates/' + id)
+    return data
+}

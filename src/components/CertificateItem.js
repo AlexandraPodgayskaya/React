@@ -11,9 +11,9 @@ function CertificateItem({ certificate, index }) {
             <td>{certificate.tags.map(tag => tag.name + " ")}</td>
             <td>{certificate.description}</td>
             <td>{certificate.price}</td>
-            {isAdmin &&
+            {isAdmin === 'true' &&
                 <td>
-                    <AdminButtonGroup />
+                    <AdminButtonGroup certificate={certificate} />
                 </td>}
         </tr>
     )

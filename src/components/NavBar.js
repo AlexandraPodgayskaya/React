@@ -15,13 +15,15 @@ function NavBar() {
         setIsAdmin(false)
         localStorage.removeItem('email')
         localStorage.removeItem('token')
+        localStorage.removeItem('isAuth')
+        localStorage.removeItem('isAdmin')
         history.push(LOGIN_ROUTE)
     }
     return (
         <Navbar bg="dark" variant="dark" fixed="top">
             <Navbar.Brand style={{ color: "grey", fontWeight: 700 }}>{isAdmin ? 'Admin UI' : 'UI'}</Navbar.Brand>
             <Nav className="me-auto">
-                {isAdmin && <Button>Add new</Button>}
+                {isAdmin === 'true' && <Button>Add new</Button>}
             </Nav>
             <Nav className="ml-auto">
                 <Nav.Link style={{ color: "white" }}>{login}</Nav.Link>

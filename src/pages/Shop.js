@@ -13,7 +13,7 @@ function Shop() {
             setCertificates(data.pagePositions)
             setCount(data.totalNumberPositions)
         })
-    }, [])
+    }, [certificates])
 
     return (
         <CertificatesContext.Provider value={{

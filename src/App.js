@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter } from "react-router-dom";
-import { AuthContext } from './context';
+import { Context } from './context';
 import AppRouter from "./components/AppRouter";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
@@ -8,19 +8,23 @@ import Footer from "./components/Footer";
 function App() {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('isAuth'))
   const [isAdmin, setIsAdmin] = useState(localStorage.getItem('isAdmin'))
+  const [reboot, setReboot] = useState(false)
+
   return (
-    <AuthContext.Provider value={{
+    <Context.Provider value={{
       isAuth,
       isAdmin,
+      reboot,
       setIsAuth,
-      setIsAdmin
+      setIsAdmin,
+      setReboot
     }}>
       <BrowserRouter>
         <NavBar />
         <AppRouter />
         <Footer />
       </BrowserRouter>
-    </AuthContext.Provider>
+    </Context.Provider>
   );
 }
 

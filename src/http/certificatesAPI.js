@@ -23,3 +23,9 @@ export const deleteCertificate = async (id) => {
     const { data } = await $authHost.delete('gift-certificates/' + id)
     return data
 }
+
+
+export const saveCertificate = async (name, description, price, duration) => {
+    const { data } = await $authHost.post('gift-certificates', { name, description, price, duration })
+    return data
+}

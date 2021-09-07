@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react'
-import { CertificatesContext, AuthContext } from '../context'
+import { CertificatesContext, Context } from '../context'
 import CertificateItem from '../components/CertificateItem'
 import { Container, Table } from 'react-bootstrap'
 
 function CertificateList() {
-    const { isAdmin } = useContext(AuthContext)
-    const { certificates, setCertificates } = useContext(CertificatesContext)
+    const { isAdmin } = useContext(Context)
+    const { certificates } = useContext(CertificatesContext)
 
     return (
         <Container
@@ -25,7 +25,7 @@ function CertificateList() {
                 </thead>
                 <tbody>
                     {certificates.map((certificate, index) =>
-                        <CertificateItem index={index} certificate={certificate} />
+                        <CertificateItem key={index} index={index} certificate={certificate} />
                     )}
                 </tbody>
             </Table>

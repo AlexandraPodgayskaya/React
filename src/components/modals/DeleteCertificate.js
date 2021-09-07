@@ -5,9 +5,10 @@ import { deleteCertificate } from '../../http/certificatesAPI'
 
 function DeleteCertificate({ show, onHide, certificateId }) {
     const { certificates, setCertificates } = useContext(CertificatesContext)
+    const { isUpdated, setIsUpdated } = useContext(CertificatesContext)
     const deleteItem = () => {
-        deleteCertificate(certificateId).then(data => {
-            setCertificates(certificates.filter((item) => item.id !== certificateId));
+        deleteCertificate(certificateId).then(() => {
+            setIsUpdated(!isUpdated)
             onHide()
         })
     }

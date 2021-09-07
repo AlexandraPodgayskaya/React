@@ -3,12 +3,12 @@ import { Container, Card, Form, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import { login } from '../http/userAPI'
 import { SHOP_ROUTE } from '../utils/consts'
-import { AuthContext } from '../context';
+import { Context } from '../context';
 
 function Auth() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const { setIsAuth, setIsAdmin } = useContext(AuthContext)
+    const { setIsAuth, setIsAdmin } = useContext(Context)
     const history = useHistory()
     const signIn = async () => {
         login(email, password).then(data => {
@@ -19,8 +19,6 @@ function Auth() {
             setIsAuth(true)
             history.push(SHOP_ROUTE)
         }).catch(e => { alert(e.response.data.errorMessage) })
-
-
     }
     return (
         <Container

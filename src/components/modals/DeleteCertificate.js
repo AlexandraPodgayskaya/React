@@ -1,14 +1,13 @@
 import React, { useContext } from 'react'
 import { Modal, Button } from 'react-bootstrap'
-import { CertificatesContext } from '../../context'
+import { Context } from '../../context'
 import { deleteCertificate } from '../../http/certificatesAPI'
 
 function DeleteCertificate({ show, onHide, certificateId }) {
-    const { certificates, setCertificates } = useContext(CertificatesContext)
-    const { isUpdated, setIsUpdated } = useContext(CertificatesContext)
+    const { reboot, setReboot } = useContext(Context)
     const deleteItem = () => {
         deleteCertificate(certificateId).then(() => {
-            setIsUpdated(!isUpdated)
+            setReboot(!reboot)
             onHide()
         })
     }

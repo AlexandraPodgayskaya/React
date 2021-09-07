@@ -29,3 +29,8 @@ export const saveCertificate = async (name, description, price, duration) => {
     const { data } = await $authHost.post('gift-certificates', { name, description, price, duration })
     return data
 }
+
+export const updateCertificate = async (name, description, price, duration, id) => {
+    const { data } = await $authHost.patch('gift-certificates/' + id, { name, description, price, duration })
+    return data
+}

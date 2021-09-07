@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Modal, Button, Form, Row, Col } from 'react-bootstrap'
 import { Context } from '../../context'
-import { saveCertificate } from '../../http/certificatesAPI'
+import { saveCertificate, updateCertificate } from '../../http/certificatesAPI'
 
 function AddOrEditCertificate({ show, onHide, certificate }) {
     const { reboot, setReboot } = useContext(Context)
@@ -12,6 +12,14 @@ function AddOrEditCertificate({ show, onHide, certificate }) {
 
     const saveItem = () => {
         saveCertificate(name, description, price, duration).then(data => {
+            setReboot(!reboot)
+            onHide()
+        })
+    }
+
+    const updateItem = () => {
+        console.log("Update")
+        updateCertificate(name, description, price, duration, certificate.id).then(data => {
             setReboot(!reboot)
             onHide()
         })
@@ -29,7 +37,7 @@ function AddOrEditCertificate({ show, onHide, certificate }) {
                 height: "50px",
                 color: "var(--bs-gray-500)"
             }}>
-                <Modal.Title style={{ fontSize: "18px" }}>Add new certificate</Modal.Title>
+                <Modal.Title style={{ fontSize: "18px" }}>{certificate ? 'Edit certificate with ID = ' : 'Add new certificate'}{certificate && certificate.id}</Modal.Title>
             </Modal.Header>
             <Modal.Body >
                 <Form>
@@ -78,7 +86,13 @@ function AddOrEditCertificate({ show, onHide, certificate }) {
             </Modal.Body>
             <Modal.Footer >
                 <div className="d-block mx-auto">
-                    <Button style={{ width: "80px", marginRight: "3px" }} variant="primary" onClick={saveItem}>Save</Button>
+                    <Button
+                        style={{ width: "80px", marginRight: "3px" }}
+                        variant="primary"
+                        onClick={certificate ? updateItem : saveItem}
+                    >
+                        Save
+                    </Button>
                     <Button style={{ width: "80px" }} variant="secondary" onClick={onHide}>Cancel</Button>
                 </div>
             </Modal.Footer>

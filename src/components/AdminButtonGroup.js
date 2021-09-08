@@ -23,7 +23,7 @@ function AdminButtonGroup({ certificate }) {
             >
                 Delete
             </Button>
-            <AddOrEditCertificate certificate={certificate} show={editVisable} onHide={() => setEditVisable(false)} />
+            <AddOrEditCertificate certificate={certificate} tagList={certificate.tags} show={editVisable} onHide={() => setEditVisable(false)} />
             <DeleteCertificate show={deleteVisable} onHide={() => setDeleteVisable(false)} certificateId={certificate.id} />
         </ButtonGroup>
     )

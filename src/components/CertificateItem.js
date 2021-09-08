@@ -8,7 +8,7 @@ function CertificateItem({ certificate, index }) {
         <tr style={{ background: index % 2 === 0 ? "var(--bs-gray-200)" : "lightgray" }}>
             <td>{certificate.createDate}</td>
             <td>{certificate.name}</td>
-            <td>{certificate.tags.map(tag => tag.name + " ")}</td>
+            <td>{certificate.tags.map(tag => tag.text + " ")}</td>
             <td>{certificate.description}</td>
             <td>{certificate.price}</td>
             {isAdmin === 'true' &&

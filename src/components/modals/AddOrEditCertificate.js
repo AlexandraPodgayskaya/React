@@ -1,14 +1,20 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { Modal, Button, Form, Row, Col } from 'react-bootstrap'
 import { Context } from '../../context'
 import { saveCertificate, updateCertificate } from '../../http/certificatesAPI'
+import { WithContext as ReactTags } from 'react-tag-input';
 
-function AddOrEditCertificate({ show, onHide, certificate }) {
+function AddOrEditCertificate({ show, onHide, certificate, tagList }) {
     const { reboot, setReboot } = useContext(Context)
     const [name, setName] = useState(null)
     const [description, setDescription] = useState(null)
     const [price, setPrice] = useState(null)
     const [duration, setDuration] = useState(null)
+    const [tag, setTag] = useState(null)
+    const [tags, setTags] = useState([])
+    useEffect(() => {
+        setTags(tagList)
+    }, [tagList])
 
     const saveItem = () => {
         saveCertificate(name, description, price, duration).then(data => {
@@ -80,6 +86,15 @@ function AddOrEditCertificate({ show, onHide, certificate }) {
                             <Form.Control
                                 defaultValue={certificate && certificate.price}
                                 onChange={event => setPrice(event.target.value)} />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3">
+                        <Form.Label column sm="2">
+                            Tags
+                        </Form.Label>
+                        <Col sm="10">
+                            <ReactTags tags={tags}
+                                inputFieldPosition="top" />
                         </Col>
                     </Form.Group>
                 </Form>

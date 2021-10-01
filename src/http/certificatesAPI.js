@@ -25,12 +25,12 @@ export const deleteCertificate = async (id) => {
 }
 
 
-export const saveCertificate = async (name, description, price, duration) => {
-    const { data } = await $authHost.post('gift-certificates', { name, description, price, duration })
+export const saveCertificate = async (name, description, price, duration, tags) => {
+    const { data } = await $authHost.post('gift-certificates', { name, description, price, duration, tags })
     return data
 }
 
-export const updateCertificate = async (name, description, price, duration, id) => {
-    const { data } = await $authHost.patch('gift-certificates/' + id, { name, description, price, duration })
+export const updateCertificate = async (name, description, price, duration, id, tags) => {
+    const { data } = await $authHost.patch('gift-certificates/' + id, { name, description, price, duration, tags })
     return data
 }

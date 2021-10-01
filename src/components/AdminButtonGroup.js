@@ -6,6 +6,13 @@ import DeleteCertificate from '../components/modals/DeleteCertificate'
 function AdminButtonGroup({ certificate }) {
     const [editVisable, setEditVisable] = useState(false)
     const [deleteVisable, setDeleteVisable] = useState(false)
+    const [tagList, setTagList] = useState(certificate.tags)
+    console.log(tagList)
+    const newArr = tagList.map(
+        item => { return { ...item, id: item.text } }
+    )
+    console.log (newArr)
+
     return (
         <ButtonGroup aria-label="Basic example">
             <Button style={{ background: "blue" }} variant="secondary">View</Button>
@@ -23,7 +30,7 @@ function AdminButtonGroup({ certificate }) {
             >
                 Delete
             </Button>
-            <AddOrEditCertificate certificate={certificate} tagList={certificate.tags} show={editVisable} onHide={() => setEditVisable(false)} />
+            <AddOrEditCertificate certificate={certificate} tagList={newArr} show={editVisable} onHide={() => setEditVisable(false)} />
             <DeleteCertificate show={deleteVisable} onHide={() => setDeleteVisable(false)} certificateId={certificate.id} />
         </ButtonGroup>
     )

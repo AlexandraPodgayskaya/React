@@ -3,32 +3,58 @@ import { Modal, Button, Form, Row, Col } from 'react-bootstrap'
 import { Context } from '../../context'
 import { saveCertificate, updateCertificate } from '../../http/certificatesAPI'
 import { WithContext as ReactTags } from 'react-tag-input';
+import NewTags from '../NewTags'
 
 function AddOrEditCertificate({ show, onHide, certificate, tagList }) {
+    const Keys = {
+        TAB: 9,
+        SPACE: 32,
+        COMMA: 188,
+    };
     const { reboot, setReboot } = useContext(Context)
     const [name, setName] = useState(null)
     const [description, setDescription] = useState(null)
     const [price, setPrice] = useState(null)
     const [duration, setDuration] = useState(null)
-    const [tag, setTag] = useState(null)
-    const [tags, setTags] = useState([])
+    const [tags, setTags] = useState(null)
     useEffect(() => {
         setTags(tagList)
+        console.log(tags)
     }, [tagList])
 
     const saveItem = () => {
-        saveCertificate(name, description, price, duration).then(data => {
+        console.log ("Save Item " + tags)
+        saveCertificate(name, description, price, duration, tags).then(data => {
             setReboot(!reboot)
             onHide()
         })
     }
 
     const updateItem = () => {
-        console.log("Update")
-        updateCertificate(name, description, price, duration, certificate.id).then(data => {
+        console.log ("Update Item " + tags)
+        updateCertificate(name, description, price, duration, certificate.id, tags).then(data => {
             setReboot(!reboot)
             onHide()
         })
+    }
+
+    const deleteTag = (i) => {
+        console.log("Delete tag")
+        console.log(i)
+        setTags(tags.filter((tag, index) => index !== i))
+        console.log(tags)
+
+    }
+
+    const addTag = (tag) => {
+        console.log("Add")
+        console.log(tags)
+        if (tags) {
+            setTags([...tags, tag])
+        } else {
+            setTags([tag])
+        }
+        console.log(tags)
     }
 
     return (
@@ -93,7 +119,12 @@ function AddOrEditCertificate({ show, onHide, certificate, tagList }) {
                             Tags
                         </Form.Label>
                         <Col sm="10">
-                            <ReactTags tags={tags}
+                            <ReactTags
+                                tags={tags}
+                                delimiters={[Keys.TAB, Keys.SPACE, Keys.COMMA]}
+                                handleDelete={deleteTag}
+                                handleAddition={addTag}
+                                labelField={'text'}
                                 inputFieldPosition="top" />
                         </Col>
                     </Form.Group>
